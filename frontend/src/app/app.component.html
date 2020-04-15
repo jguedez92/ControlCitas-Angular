@@ -1,0 +1,82 @@
+<div class="main">
+  <nav class="navbar navbar-expand-lg navbar-light border-bottom">
+    <button class="btn btn-clr-secondary" id="menu-toggle" (click)="CambioClase($event)" *ngIf="!userExist">
+      <svg class="bi bi-icon-bottom bi-caret-right-fill" width="1.5em" height="1.5em" viewBox="0 0 16 16"
+        fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+        <path
+          d="M12.14 8.753l-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 011.659-.753l5.48 4.796a1 1 0 010 1.506z" />
+      </svg>
+    </button>
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+
+    <div class="collapse d-flex justify-content-end navbar-collapse" id="navbarSupportedContent">
+      <div class="col-7 d-flex justify-content-between ">
+        <div class="">
+          <a class="navbar-brand font-weight-bold animated tada" routerLink="/">
+            Control de Citas
+          </a>
+        </div>
+        <ul class="navbar-nav mt-2 mt-lg-0 font-weight-bold" *ngIf="!userExist">
+          <li class="nav-item mr-3">
+            <a class="nav-link" routerLink="registro">
+              
+                <svg class="bi bi-person-plus-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor"
+                  xmlns="http://www.w3.org/2000/svg">
+                  <path fill-rule="evenodd"
+                    d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zm5-6a3 3 0 100-6 3 3 0 000 6zm7.5-3a.5.5 0 01.5.5v2a.5.5 0 01-.5.5h-2a.5.5 0 010-1H13V5.5a.5.5 0 01.5-.5z"
+                    clip-rule="evenodd" />
+                  <path fill-rule="evenodd" d="M13 7.5a.5.5 0 01.5-.5h2a.5.5 0 010 1H14v1.5a.5.5 0 01-1 0v-2z"
+                    clip-rule="evenodd" />
+                </svg>
+                Registro
+              
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="ingreso">
+              
+                <svg class="bi bi-people-circle" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor"
+                  xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    d="M13.468 12.37C12.758 11.226 11.195 10 8 10s-4.757 1.225-5.468 2.37A6.987 6.987 0 008 15a6.987 6.987 0 005.468-2.63z" />
+                  <path fill-rule="evenodd" d="M8 9a3 3 0 100-6 3 3 0 000 6z" clip-rule="evenodd" />
+                  <path fill-rule="evenodd" d="M8 1a7 7 0 100 14A7 7 0 008 1zM0 8a8 8 0 1116 0A8 8 0 010 8z"
+                    clip-rule="evenodd" />
+                </svg>
+                Ingresar
+              
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div class="{{className}}" id="wrapper">
+    <!-- Sidebar -->
+    <div class="bg-light rounded-right border-right border-bottom" id="sidebar-wrapper">
+      <div class="sidebar-heading font-weight-bold">Cesar Perez </div>
+      <div class="list-group font-weight-bold list-group-flush">
+        <a routerLink="perfil" class="list-group-item list-group-item-action bg-light">Perfil</a>
+        <a routerLink="citas" class="list-group-item list-group-item-action bg-light">Citas</a>
+        <a routerLink="" class="list-group-item list-group-item-action bg-light">Desconectar</a>
+      </div>
+    </div>
+    <!-- /#sidebar-wrapper -->
+
+    <!-- Page Content -->
+    <div id="page-content-wrapper">
+      <div class="container">
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+    <!-- /#page-content-wrapper -->
+
+  </div>
+  <!-- /#wrapper -->
+</div>

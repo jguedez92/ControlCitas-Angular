@@ -1,0 +1,66 @@
+<div class="row d-flex justify-content-center" style="height: 100vh;">
+  <div class="col-10 my-auto color-secondary rounded-lg p-4 animated bounceInRight">
+    <h4 class="mb-3">Registro</h4>
+    <hr class="my-2">
+    <form [formGroup]='regForm' >
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <label for="name">Nombre</label>
+          <input formControlName="vName" type="text" class="form-control" id="name" [class.is-invalid]="regForm.get('vName').touched && regForm.get('vName').invalid">
+        </div>
+        <div class="col-md-6 mb-3">
+          <label for="lastName">Apellido</label>
+          <input  formControlName="vLastName" type="text" class="form-control" id="lastName" [class.is-invalid]="regForm.get('vLastName').touched && regForm.get('vLastName').invalid">
+        </div> 
+        <div class="col-md-6 mb-3">
+          <label for="dni">DNI</label>
+          <input  formControlName="vDni" type="text" class="form-control" id="dni" [class.is-invalid]="regForm.get('vDni').touched && regForm.get('vDni').invalid" >
+        </div>
+        <div class="col-md-6 mb-3">
+          <label for="phone">Telefono</label>
+          <input  formControlName="vPhone" type="text" class="form-control" id="phone" placeholder="Ej: 666-090090" [class.is-invalid]="regForm.get('vPhone').touched && regForm.get('vPhone').invalid">
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="email">Email</label>
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text">@</span>
+          </div>
+          <input  formControlName="vEmail" type="email" class="form-control" id="email" placeholder="you@example.com" [class.is-invalid]="regForm.get('vEmail').touched && regForm.get('vEmail').invalid" >
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="password">Contrasña</label>
+        <input  formControlName="vPassword" type="password" class="form-control" id="password" [class.is-invalid]="regForm.get('vPassword').touched && regForm.get('vPassword').invalid">
+        <div *ngIf="regForm.get('vPassword').touched && regForm.get('vPassword').invalid">
+          <small class="text-danger ml-2" *ngIf="regForm.get('vPassword').errors.required">
+            Debe Ingresar una contraseña
+          </small>
+          <small class="text-danger ml-2" *ngIf="regForm.get('vPassword').errors.minlength">
+            la contraseña debe tener como minimo 8 caracteres
+          </small>
+        </div>
+        
+      </div>
+
+      <div class="mb-3">
+        <label for="passwordConfirm">Confirma Contraseña</label>
+        <input formControlName="vPasswordConfirm" type="password" class="form-control" id="passwordConfirm" [class.is-invalid]="regForm.get('vPasswordConfirm').touched && regForm.hasError('notEquals')">
+        <div *ngIf="regForm.get('vPasswordConfirm').touched && regForm.hasError('notEquals')">
+          <small class="text-danger ml-2" >
+            Las Contraseñas no son iguales
+          </small>
+        </div>
+        
+      </div>
+      <hr class="my-4">
+      <div class="row d-flex justify-content-around">
+        <button class="btn btn-primary" style="width: 10em;" type="submit" [disabled]="!regForm.valid" >Registrar</button>
+        {{regForm.valid}}
+        <button class="btn btn-secondary" style="width: 10em;" type="resert">limpiar</button>
+      </div>
+
+    </form>
+  </div>
+</div>
