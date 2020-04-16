@@ -2,37 +2,98 @@
   <div class="col-10 my-auto color-secondary rounded-lg p-4 animated bounceInRight">
     <h4 class="mb-3">Registro</h4>
     <hr class="my-2">
-    <form [formGroup]='regForm' >
+    <form [formGroup]='regForm'>
       <div class="row">
         <div class="col-md-6 mb-3">
           <label for="name">Nombre</label>
-          <input formControlName="vName" type="text" class="form-control" id="name" [class.is-invalid]="regForm.get('vName').touched && regForm.get('vName').invalid">
+          <input formControlName="vName" type="text" class="form-control" id="name"
+            [class.is-invalid]="regForm.get('vName').touched && regForm.get('vName').invalid">
+            <div *ngIf="regForm.get('vName').touched && regForm.get('vName').invalid">
+              <small class="text-danger ml-2" *ngIf="regForm.get('vName').errors.required">
+                debe ingresar su nombre
+              </small>
+              <small class="text-danger ml-2" *ngIf="regForm.get('vName').errors.minlength">
+                 su nombre debe tener como minimo 4 caracteres
+              </small>
+              <small class="text-danger ml-2" *ngIf="regForm.get('vName').errors.maxlength">
+                su nombre debe tener como maximo 10 caracteres
+              </small>
+            </div>
         </div>
         <div class="col-md-6 mb-3">
           <label for="lastName">Apellido</label>
-          <input  formControlName="vLastName" type="text" class="form-control" id="lastName" [class.is-invalid]="regForm.get('vLastName').touched && regForm.get('vLastName').invalid">
-        </div> 
+          <input formControlName="vLastName" type="text" class="form-control" id="lastName"
+            [class.is-invalid]="regForm.get('vLastName').touched && regForm.get('vLastName').invalid">
+            <div *ngIf="regForm.get('vLastName').touched && regForm.get('vLastName').invalid">
+              <small class="text-danger ml-2" *ngIf="regForm.get('vLastName').errors.required">
+                debe ingresar su Apellido
+              </small>
+              <small class="text-danger ml-2" *ngIf="regForm.get('vLastName').errors.minlength">
+                 su apellido debe tener como minimo 4 caracteres
+              </small>
+              <small class="text-danger ml-2" *ngIf="regForm.get('vLastName').errors.maxlength">
+                su apellido debe tener como maximo 10 caracteres
+              </small>
+            </div>
+        </div>
         <div class="col-md-6 mb-3">
           <label for="dni">DNI</label>
-          <input  formControlName="vDni" type="text" class="form-control" id="dni" [class.is-invalid]="regForm.get('vDni').touched && regForm.get('vDni').invalid" >
+          <input formControlName="vDni" type="text" class="form-control" id="dni"
+            [class.is-invalid]="regForm.get('vDni').touched && regForm.get('vDni').invalid">
+            <div *ngIf="regForm.get('vDni').touched && regForm.get('vDni').invalid">
+              <small class="text-danger ml-2" *ngIf="regForm.get('vDni').errors.required">
+                debe ingresar su DNI
+              </small>
+              <small class="text-danger ml-2" *ngIf="regForm.get('vDni').errors.minlength">
+                el numero debe tener 8 digitos
+              </small>
+              <small class="text-danger ml-2" *ngIf="regForm.get('vDni').errors.maxlength">
+                el numero debe tener 8 digitos
+              </small>
+            </div>
         </div>
+
         <div class="col-md-6 mb-3">
           <label for="phone">Telefono</label>
-          <input  formControlName="vPhone" type="text" class="form-control" id="phone" placeholder="Ej: 666-090090" [class.is-invalid]="regForm.get('vPhone').touched && regForm.get('vPhone').invalid">
+          <input formControlName="vPhone" type="text" class="form-control" id="phone" placeholder="Ej: 666-090090"
+            [class.is-invalid]="regForm.get('vPhone').touched && regForm.get('vPhone').invalid">
+            <div *ngIf="regForm.get('vPhone').touched && regForm.get('vPhone').invalid">
+              <small class="text-danger ml-2" *ngIf="regForm.get('vPhone').errors.required">
+                Debe ingresar un numero de telefono
+              </small>
+              <small class="text-danger ml-2" *ngIf="regForm.get('vPhone').errors.minlength">
+                el numero debe tener 10 digitos
+              </small>
+              <small class="text-danger ml-2" *ngIf="regForm.get('vPhone').errors.maxlength">
+                el numero debe tener 10 digitos
+              </small>
+            </div>
         </div>
       </div>
+
       <div class="mb-3">
         <label for="email">Email</label>
         <div class="input-group">
           <div class="input-group-prepend">
             <span class="input-group-text">@</span>
           </div>
-          <input  formControlName="vEmail" type="email" class="form-control" id="email" placeholder="you@example.com" [class.is-invalid]="regForm.get('vEmail').touched && regForm.get('vEmail').invalid" >
+          <input formControlName="vEmail" type="email" class="form-control" id="email" placeholder="you@example.com"
+            [class.is-invalid]="regForm.get('vEmail').touched && regForm.get('vEmail').invalid">
+        </div>
+        <div *ngIf="regForm.get('vEmail').touched && regForm.get('vEmail').invalid">
+          <small class="text-danger ml-2" *ngIf="regForm.get('vEmail').errors.required">
+            Debe Ingresar un email
+          </small>
+          <small class="text-danger ml-2" *ngIf="regForm.get('vEmail').errors.email">
+            debe ingresar un email valido
+          </small>
         </div>
       </div>
+
       <div class="mb-3">
         <label for="password">Contrasña</label>
-        <input  formControlName="vPassword" type="password" class="form-control" id="password" [class.is-invalid]="regForm.get('vPassword').touched && regForm.get('vPassword').invalid">
+        <input formControlName="vPassword" type="password" class="form-control" id="password"
+          [class.is-invalid]="regForm.get('vPassword').touched && regForm.get('vPassword').invalid">
         <div *ngIf="regForm.get('vPassword').touched && regForm.get('vPassword').invalid">
           <small class="text-danger ml-2" *ngIf="regForm.get('vPassword').errors.required">
             Debe Ingresar una contraseña
@@ -41,23 +102,23 @@
             la contraseña debe tener como minimo 8 caracteres
           </small>
         </div>
-        
       </div>
 
       <div class="mb-3">
         <label for="passwordConfirm">Confirma Contraseña</label>
-        <input formControlName="vPasswordConfirm" type="password" class="form-control" id="passwordConfirm" [class.is-invalid]="regForm.get('vPasswordConfirm').touched && regForm.hasError('notEquals')">
+        <input formControlName="vPasswordConfirm" type="password" class="form-control" id="passwordConfirm"
+          [class.is-invalid]="regForm.get('vPasswordConfirm').touched && regForm.hasError('notEquals')">
         <div *ngIf="regForm.get('vPasswordConfirm').touched && regForm.hasError('notEquals')">
-          <small class="text-danger ml-2" >
+          <small class="text-danger ml-2">
             Las Contraseñas no son iguales
           </small>
         </div>
-        
+
       </div>
       <hr class="my-4">
       <div class="row d-flex justify-content-around">
-        <button class="btn btn-primary" style="width: 10em;" type="submit" [disabled]="!regForm.valid" >Registrar</button>
-        {{regForm.valid}}
+        <button class="btn btn-primary" style="width: 10em;" type="submit"
+          [disabled]="!regForm.valid">Registrar</button>
         <button class="btn btn-secondary" style="width: 10em;" type="resert">limpiar</button>
       </div>
 
