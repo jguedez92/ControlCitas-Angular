@@ -1,66 +1,92 @@
+import { UserService } from './../../services/user.service';
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators, AbstractControl, ValidationErrors, ValidatorFn } from '@angular/forms';
+import { FormGroup, Validators, ValidationErrors, ValidatorFn, FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss']
 })
+
 export class RegisterComponent implements OnInit {
 
-  constructor() { }
+  public message: string = ""
+   
+
+  constructor(
+    private fb: FormBuilder,
+    public userService: UserService
+  ) { }
 
   ngOnInit(): void {
+    
   }
 
-  regForm = new FormGroup({
-    vName: new FormControl('', [
+  regForm = this.fb.group({
+    name: ['', [
       Validators.required,
       Validators.minLength(4),
       Validators.maxLength(10)
-    ]),
-    vLastName: new FormControl('', [
+    ]],
+    lastName: ['', [
       Validators.required,
       Validators.minLength(4),
       Validators.maxLength(10)
-    ]),
-    vDni: new FormControl('', [
+    ]],
+    dni: ['', [
       Validators.required,
       Validators.minLength(8),
       Validators.maxLength(8)
-    ]),
-    vPhone: new FormControl('', [
+    ]],
+    phone: ['', [
       Validators.required,
       Validators.minLength(10),
       Validators.maxLength(10)
-    ]),
-    vEmail: new FormControl('', [
+    ]],
+    email: ['', [
       Validators.required,
       Validators.email
-    ]),
-    vPassword: new FormControl('', [
+    ]],
+    password: ['', [
       Validators.required,
       Validators.minLength(8)
-    ]),
-    vPasswordConfirm: new FormControl('', [
+    ]],
+    passwordConfirm: ['', [
       Validators.required
-    ])
-  },{
-    validators: userValidator.validPassword
-  })
+    ]]
+  },
+    {
+      validators: userValidator.validPassword
+    })
 
 
-  
+  userRegister() {
+
+    if (this.regForm.valid) {
+
+      const user = this.regForm.value;
+      this.userService.register(user)
+        .subscribe(
+          res => {
+            this.message = res.message;
+            
+          },
+          error => console.log(error)
+        )
+    }
+  }
+
+
 }
 
-class userValidator{
+class userValidator {
 
-  static validPassword:  ValidatorFn  =  (control:  FormGroup):  ValidationErrors  |  null  =>  {
-    const password = control.get('vPassword');
-    const confirmarPassword = control.get('vPasswordConfirm');
-  
+  static validPassword: ValidatorFn = (control: FormGroup): ValidationErrors | null => {
+    const password = control.get('password');
+    const confirmarPassword = control.get('passwordConfirm');
+
     return password.value === confirmarPassword.value
-      ?  null
-      :  {  'notEquals':  true  };
+      ? null
+      : { 'notEquals': true };
   };
 }

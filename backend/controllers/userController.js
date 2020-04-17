@@ -17,12 +17,15 @@ const UserController = {
             const password = await bcrypt.hash(req.body.password, 9);
             const user = await User.create({
                 name: req.body.name,
-                lastName: req.body.lasName,
+                lastName: req.body.lastName,
+                dni: req.body.dni,
                 email: req.body.email,
-                password
+                password,
+                phone: req.body.phone,
+                role: "user",
+                status: "active"
             });
             res.status(201).send({
-                user,
                 message: 'Usuario Creado con Exito'
             });
 
@@ -34,30 +37,32 @@ const UserController = {
         }
     },
 
-    async login(req, res){
+    async login(req, res) {
         try {
 
             const user = await User.findOne({
                 where: {
                     email: req.body.email
-                } 
+                }
             })
-            if(!user){
+            if (!user) {
                 return res.status(400).send({
-                    message: 'Usuario o contraseña incorrectas' 
-                }) 
+                    message: 'Usuario y/o contraseña incorrectas'
+                })
             }
 
 
             const valid = await bcrypt.compare(req.body.password, user.password)
 
-            if(!valid){
+            if (!valid) {
                 return res.status(400).send({
-                    message : 'Usuario y/o contraseña incorrectas'
+                    message: 'Usuario y/o contraseña incorrectas'
                 })
             }
 
-            const token = jwt.sign({id: user.id}, jwt_secret);
+            const token = jwt.sign({
+                id: user.id
+            }, jwt_secret);
             Token.create({
                 token,
                 UserId: user.id
@@ -72,6 +77,20 @@ const UserController = {
             console.log(error)
             res.status(500).send({
                 message: 'Hubo un problema al tratar de logearnos'
+            })
+
+        }
+    },
+
+    async getAll(res) {
+        try {
+            const users = await User.findAll({})
+            res.send({users});
+
+        } catch (error) {
+            console.log(error)
+            res.status(500).send({
+                message: 'ha ocurrido un problema!'
             })
 
         }

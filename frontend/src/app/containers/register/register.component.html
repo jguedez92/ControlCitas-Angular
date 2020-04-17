@@ -1,53 +1,55 @@
-<div class="row d-flex justify-content-center" style="height: 100vh;">
-  <div class="col-10 my-auto color-secondary rounded-lg p-4 animated bounceInRight">
+<div class="row d-flex justify-content-center">
+  <div class="col-10 mt-4 color-secondary rounded-lg p-4 animated bounceInRight" *ngIf="!message">
     <h4 class="mb-3">Registro</h4>
     <hr class="my-2">
     <form [formGroup]='regForm'>
       <div class="row">
         <div class="col-md-6 mb-3">
           <label for="name">Nombre</label>
-          <input formControlName="vName" type="text" class="form-control" id="name"
-            [class.is-invalid]="regForm.get('vName').touched && regForm.get('vName').invalid">
-            <div *ngIf="regForm.get('vName').touched && regForm.get('vName').invalid">
-              <small class="text-danger ml-2" *ngIf="regForm.get('vName').errors.required">
+          <input formControlName="name" type="text" class="form-control" id="name"
+            [class.is-invalid]="regForm.get('name').touched && regForm.get('name').invalid">
+            <div *ngIf="regForm.get('name').touched && regForm.get('name').invalid">
+              <small class="text-danger ml-2" *ngIf="regForm.get('name').errors.required">
                 debe ingresar su nombre
               </small>
-              <small class="text-danger ml-2" *ngIf="regForm.get('vName').errors.minlength">
+              <small class="text-danger ml-2" *ngIf="regForm.get('name').errors.minlength">
                  su nombre debe tener como minimo 4 caracteres
               </small>
-              <small class="text-danger ml-2" *ngIf="regForm.get('vName').errors.maxlength">
+              <small class="text-danger ml-2" *ngIf="regForm.get('name').errors.maxlength">
                 su nombre debe tener como maximo 10 caracteres
               </small>
             </div>
         </div>
+
         <div class="col-md-6 mb-3">
           <label for="lastName">Apellido</label>
-          <input formControlName="vLastName" type="text" class="form-control" id="lastName"
-            [class.is-invalid]="regForm.get('vLastName').touched && regForm.get('vLastName').invalid">
-            <div *ngIf="regForm.get('vLastName').touched && regForm.get('vLastName').invalid">
-              <small class="text-danger ml-2" *ngIf="regForm.get('vLastName').errors.required">
+          <input formControlName="lastName" type="text" class="form-control" id="lastName"
+            [class.is-invalid]="regForm.get('lastName').touched && regForm.get('lastName').invalid">
+            <div *ngIf="regForm.get('lastName').touched && regForm.get('lastName').invalid">
+              <small class="text-danger ml-2" *ngIf="regForm.get('lastName').errors.required">
                 debe ingresar su Apellido
               </small>
-              <small class="text-danger ml-2" *ngIf="regForm.get('vLastName').errors.minlength">
+              <small class="text-danger ml-2" *ngIf="regForm.get('lastName').errors.minlength">
                  su apellido debe tener como minimo 4 caracteres
               </small>
-              <small class="text-danger ml-2" *ngIf="regForm.get('vLastName').errors.maxlength">
+              <small class="text-danger ml-2" *ngIf="regForm.get('lastName').errors.maxlength">
                 su apellido debe tener como maximo 10 caracteres
               </small>
             </div>
         </div>
+
         <div class="col-md-6 mb-3">
           <label for="dni">DNI</label>
-          <input formControlName="vDni" type="text" class="form-control" id="dni"
-            [class.is-invalid]="regForm.get('vDni').touched && regForm.get('vDni').invalid">
-            <div *ngIf="regForm.get('vDni').touched && regForm.get('vDni').invalid">
-              <small class="text-danger ml-2" *ngIf="regForm.get('vDni').errors.required">
+          <input formControlName="dni" type="text" class="form-control" id="dni"
+            [class.is-invalid]="regForm.get('dni').touched && regForm.get('dni').invalid">
+            <div *ngIf="regForm.get('dni').touched && regForm.get('dni').invalid">
+              <small class="text-danger ml-2" *ngIf="regForm.get('dni').errors.required">
                 debe ingresar su DNI
               </small>
-              <small class="text-danger ml-2" *ngIf="regForm.get('vDni').errors.minlength">
+              <small class="text-danger ml-2" *ngIf="regForm.get('dni').errors.minlength">
                 el numero debe tener 8 digitos
               </small>
-              <small class="text-danger ml-2" *ngIf="regForm.get('vDni').errors.maxlength">
+              <small class="text-danger ml-2" *ngIf="regForm.get('dni').errors.maxlength">
                 el numero debe tener 8 digitos
               </small>
             </div>
@@ -55,16 +57,16 @@
 
         <div class="col-md-6 mb-3">
           <label for="phone">Telefono</label>
-          <input formControlName="vPhone" type="text" class="form-control" id="phone" placeholder="Ej: 666-090090"
-            [class.is-invalid]="regForm.get('vPhone').touched && regForm.get('vPhone').invalid">
-            <div *ngIf="regForm.get('vPhone').touched && regForm.get('vPhone').invalid">
-              <small class="text-danger ml-2" *ngIf="regForm.get('vPhone').errors.required">
+          <input formControlName="phone" type="text" class="form-control" id="phone" placeholder="Ej: 666-090090"
+            [class.is-invalid]="regForm.get('phone').touched && regForm.get('phone').invalid">
+            <div *ngIf="regForm.get('phone').touched && regForm.get('phone').invalid">
+              <small class="text-danger ml-2" *ngIf="regForm.get('phone').errors.required">
                 Debe ingresar un numero de telefono
               </small>
-              <small class="text-danger ml-2" *ngIf="regForm.get('vPhone').errors.minlength">
+              <small class="text-danger ml-2" *ngIf="regForm.get('phone').errors.minlength">
                 el numero debe tener 10 digitos
               </small>
-              <small class="text-danger ml-2" *ngIf="regForm.get('vPhone').errors.maxlength">
+              <small class="text-danger ml-2" *ngIf="regForm.get('phone').errors.maxlength">
                 el numero debe tener 10 digitos
               </small>
             </div>
@@ -77,14 +79,14 @@
           <div class="input-group-prepend">
             <span class="input-group-text">@</span>
           </div>
-          <input formControlName="vEmail" type="email" class="form-control" id="email" placeholder="you@example.com"
-            [class.is-invalid]="regForm.get('vEmail').touched && regForm.get('vEmail').invalid">
+          <input formControlName="email" type="email" class="form-control" id="email" placeholder="you@example.com"
+            [class.is-invalid]="regForm.get('email').touched && regForm.get('email').invalid">
         </div>
-        <div *ngIf="regForm.get('vEmail').touched && regForm.get('vEmail').invalid">
-          <small class="text-danger ml-2" *ngIf="regForm.get('vEmail').errors.required">
+        <div *ngIf="regForm.get('email').touched && regForm.get('email').invalid">
+          <small class="text-danger ml-2" *ngIf="regForm.get('email').errors.required">
             Debe Ingresar un email
           </small>
-          <small class="text-danger ml-2" *ngIf="regForm.get('vEmail').errors.email">
+          <small class="text-danger ml-2" *ngIf="regForm.get('email').errors.email">
             debe ingresar un email valido
           </small>
         </div>
@@ -92,13 +94,13 @@
 
       <div class="mb-3">
         <label for="password">Contrasña</label>
-        <input formControlName="vPassword" type="password" class="form-control" id="password"
-          [class.is-invalid]="regForm.get('vPassword').touched && regForm.get('vPassword').invalid">
-        <div *ngIf="regForm.get('vPassword').touched && regForm.get('vPassword').invalid">
-          <small class="text-danger ml-2" *ngIf="regForm.get('vPassword').errors.required">
+        <input formControlName="password" type="password" class="form-control" id="password"
+          [class.is-invalid]="regForm.get('password').touched && regForm.get('password').invalid">
+        <div *ngIf="regForm.get('password').touched && regForm.get('password').invalid">
+          <small class="text-danger ml-2" *ngIf="regForm.get('password').errors.required">
             Debe Ingresar una contraseña
           </small>
-          <small class="text-danger ml-2" *ngIf="regForm.get('vPassword').errors.minlength">
+          <small class="text-danger ml-2" *ngIf="regForm.get('password').errors.minlength">
             la contraseña debe tener como minimo 8 caracteres
           </small>
         </div>
@@ -106,9 +108,9 @@
 
       <div class="mb-3">
         <label for="passwordConfirm">Confirma Contraseña</label>
-        <input formControlName="vPasswordConfirm" type="password" class="form-control" id="passwordConfirm"
-          [class.is-invalid]="regForm.get('vPasswordConfirm').touched && regForm.hasError('notEquals')">
-        <div *ngIf="regForm.get('vPasswordConfirm').touched && regForm.hasError('notEquals')">
+        <input formControlName="passwordConfirm" type="password" class="form-control" id="passwordConfirm"
+          [class.is-invalid]="regForm.get('passwordConfirm').touched && regForm.hasError('notEquals')">
+        <div *ngIf="regForm.get('passwordConfirm').touched && regForm.hasError('notEquals')">
           <small class="text-danger ml-2">
             Las Contraseñas no son iguales
           </small>
@@ -118,10 +120,15 @@
       <hr class="my-4">
       <div class="row d-flex justify-content-around">
         <button class="btn btn-primary" style="width: 10em;" type="submit"
-          [disabled]="!regForm.valid">Registrar</button>
-        <button class="btn btn-secondary" style="width: 10em;" type="resert">limpiar</button>
+          [disabled]="!regForm.valid" (click)="userRegister()">Registrar</button>
+        <button class="btn btn-secondary" style="width: 10em;" type="reset">limpiar</button>
       </div>
 
     </form>
+  </div>
+  <div class="col-10 my-5 color-secondary rounded-lg p-4 animated bounceInRight" *ngIf="message">
+    <div class="alert alert-success text-center" role="alert">
+      {{message}}
+    </div>
   </div>
 </div>

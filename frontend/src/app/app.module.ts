@@ -10,6 +10,7 @@ import { LoginComponent } from './containers/login/login.component';
 import { RegisterComponent } from './containers/register/register.component';
 import { ProfileComponent } from './containers/profile/profile.component';
 import { AppoinmentsComponent } from './containers/appoinments/appoinments.component';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -26,7 +27,8 @@ import { AppoinmentsComponent } from './containers/appoinments/appoinments.compo
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
