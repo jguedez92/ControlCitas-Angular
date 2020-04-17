@@ -68,7 +68,7 @@ const UserController = {
                 UserId: user.id
             })
             res.send({
-                message: 'Bienvenid@' + user.name,
+                message: 'Bienvenid@ ' + user.name,
                 user,
                 token
             })

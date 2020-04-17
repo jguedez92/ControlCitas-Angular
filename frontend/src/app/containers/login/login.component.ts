@@ -38,12 +38,12 @@ export class LoginComponent implements OnInit {
 
             this.isSuccess = true
             this.message = res.message
-          
-              localStorage.setItem('user', res.user);
-              localStorage.setItem('token', res.token);
+            console.log(res.user)
+            localStorage.setItem('user', JSON.stringify(res.user));
+            localStorage.setItem('token', res.token);
 
-              setTimeout(() => this.router.navigate(['/']), 2500)
-    
+            setTimeout(() => location.href = "http://localhost:4300/", 2500)
+
 
           },
           error => {
