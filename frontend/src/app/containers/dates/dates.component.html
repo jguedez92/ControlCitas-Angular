@@ -1,0 +1,53 @@
+<div class="col-12 color-secondary rounded-lg animated bounceInUp mt-2 mb-5">
+  <div class="container mt-2 p-5">
+    <h3>Fechas Habilitadas</h3>
+    <hr>
+    <div class="accordion" id="accordionExample" *ngFor="let date of dates">
+      <div class="card">
+        <div class="card-header d-flex" id="headingTwo">
+          <h2 class="mb-0">
+            <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
+              [attr.data-target]="'#area'+ date.id" aria-expanded="false" [attr.aria-controls]="'area'+date.id">
+              {{date.date}}
+            </button>
+          </h2>
+          <h5 class="my-auto">
+            Estatus: <span class="text-success">{{date.status}}</span>
+          </h5>
+        </div>
+        <div id="area{{date.id}}" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+          <div class="card-body">
+            <div class="container" *ngFor="let appointment of date.Appointments">
+
+            </div>
+          </div>
+        </div>
+      </div><!-- Acordion-->
+    </div>
+  </div><!-- CONTAINER FECHAS HABILIDATAS-->
+
+  <div class="container px-5  mb-4">
+    <form [formGroup]='dateForm'>
+      <h3>Habilitar Fechas</h3>
+      <hr>
+      <div class="col-10 mx-auto mb-3">
+        <label for="">Fecha</label>
+        <input formControlName="date" type="date" class="form-control" id=""
+          [class.is-invalid]="dateForm.get('date').touched && dateForm.get('date').invalid">
+        <div *ngIf="dateForm.get('date').touched && dateForm.get('date').invalid">
+          <small class="text-danger ml-2" *ngIf="dateForm.get('date').errors.required">
+            Seleccione una fecha
+          </small>
+        </div>
+      </div>
+      <div class="col-10 mx-auto text-center mb-3">
+        <button class="btn btn-primary" style="width: 15em;" (click)="registerDate()"> Habilitar fecha</button>
+      </div>
+      <div class="col-10 mt-2 mx-auto p-4 animated bounceInRight" *ngIf="message">
+        <div class="alert alert-success text-center" role="alert">
+          {{message}}
+        </div>
+      </div>
+    </form>
+  </div><!-- FORMULARIO-->
+</div><!-- CONTAINER GENERAL-->

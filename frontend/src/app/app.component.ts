@@ -10,6 +10,7 @@ export class AppComponent implements OnInit{
   public className:string = 'd-flex toggled';
   public userExist:boolean
   public lsUser:any
+  public isAdmin:boolean = false;
 
   title = 'frontend';
   constructor(
@@ -17,8 +18,11 @@ export class AppComponent implements OnInit{
   ) { }
 
   ngOnInit(): void {
-
     this.lsUser = this.userService.getLocalStorageUser()
+    if(this.lsUser.role == "admin"){
+      this.isAdmin = true
+    }
+
     if(this.lsUser){
       console.log(this.lsUser)
     }

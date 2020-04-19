@@ -42,9 +42,7 @@ export class LoginComponent implements OnInit {
             localStorage.setItem('user', JSON.stringify(res.user));
             localStorage.setItem('token', res.token);
 
-            setTimeout(() => location.href = "http://localhost:4300/", 2500)
-
-
+            setTimeout(() => location.href = "http://localhost:4300/", 500)
           },
           error => {
             this.message = error.error.message

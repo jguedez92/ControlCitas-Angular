@@ -11,6 +11,9 @@ import { RegisterComponent } from './containers/register/register.component';
 import { ProfileComponent } from './containers/profile/profile.component';
 import { AppoinmentsComponent } from './containers/appoinments/appoinments.component';
 import { HttpClientModule } from '@angular/common/http';
+import { DatesComponent } from './containers/dates/dates.component';
+import { NoticesComponent } from './containers/notices/notices.component';
+import { UsersComponent } from './containers/users/users.component';
 
 
 @NgModule({
@@ -21,7 +24,10 @@ import { HttpClientModule } from '@angular/common/http';
     LoginComponent,
     RegisterComponent,
     ProfileComponent,
-    AppoinmentsComponent
+    AppoinmentsComponent,
+    DatesComponent,
+    NoticesComponent,
+    UsersComponent
   ],
   imports: [
     BrowserModule,

@@ -21,7 +21,7 @@ app.use((req, res, next) => {
 
 app.use('/users',userRouter);
 app.use('/dates',dateRouter);
-app.use('/appoint',appointRouter);
+app.use('/appoints',appointRouter);
 
 
 

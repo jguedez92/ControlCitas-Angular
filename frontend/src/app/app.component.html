@@ -1,5 +1,5 @@
 <div class="main">
-  <nav class="navbar navbar-expand-lg navbar-light border-bottom">
+  <nav class="navbar color-dark navbar-expand-lg navbar-light border-bottom">
     <button class="btn btn-clr-secondary animated bounceInLeft" id="menu-toggle" (click)="CambioClase($event)"  *ngIf="lsUser">
       <svg class="bi bi-icon-bottom bi-caret-right-fill" width="1.5em" height="1.5em" viewBox="0 0 16 16"
         fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -23,7 +23,7 @@
         </div>
         <ul class="navbar-nav mt-2 mt-lg-0 font-weight-bold animated bounceInRight" *ngIf="!lsUser">
           <li class="nav-item mr-3">
-            <a class="nav-link" routerLink="registro">
+            <a class="nav-link color-font-base" routerLink="registro">
               
                 <svg class="bi bi-person-plus-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor"
                   xmlns="http://www.w3.org/2000/svg">
@@ -38,7 +38,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" routerLink="ingreso">
+            <a class="nav-link color-font-base" routerLink="ingreso">
               
                 <svg class="bi bi-people-circle" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor"
                   xmlns="http://www.w3.org/2000/svg">
@@ -60,10 +60,13 @@
   <div class="{{className}}" id="wrapper">
     <!-- Sidebar -->
     <div class="sidebar-wrap" id="sidebar-wrapper">
-      <div class="sidebar-heading font-weight-bold">Cesar Perez </div>
+      <div class="sidebar-heading font-weight-bold" *ngIf="lsUser">{{lsUser.name}} {{lsUser.lastName}}</div>
       <div class="list-group font-weight-bold list-group-flush p-2">
         <a routerLink="perfil" class="list-group-item mt-1 rounded-lg list-group-item-action bg-light">Perfil</a>
-        <a routerLink="citas" class="list-group-item mt-1 rounded-lg list-group-item-action bg-light">Citas</a>
+        <a routerLink="usuarios" class="list-group-item mt-1 rounded-lg list-group-item-action bg-light" *ngIf="isAdmin">Usuarios</a>
+        <a routerLink="fechas" class="list-group-item mt-1 rounded-lg list-group-item-action bg-light" *ngIf="isAdmin">Fechas</a>
+        <a routerLink="appoinments" class="list-group-item mt-1 rounded-lg list-group-item-action bg-light" *ngIf="!isAdmin" >Citas</a>
+        <a routerLink="noticias" class="list-group-item mt-1 rounded-lg list-group-item-action bg-light" *ngIf="isAdmin">Noticias</a>
         <a routerLink="" class="list-group-item mt-1 rounded-lg list-group-item-action bg-light" (click)="disconect()">Desconectar</a>
       </div>
     </div>

@@ -1,6 +1,7 @@
 import { UserService } from './../../services/user.service';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, Validators, ValidationErrors, ValidatorFn, FormBuilder } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -15,7 +16,8 @@ export class RegisterComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    public userService: UserService
+    public userService: UserService,
+    public router: Router
   ) { }
 
   ngOnInit(): void {
@@ -69,6 +71,8 @@ export class RegisterComponent implements OnInit {
         .subscribe(
           res => {
             this.message = res.message;
+
+            setTimeout(() => this.router.navigate(['ingreso']), 2000)
             
           },
           error => console.log(error)

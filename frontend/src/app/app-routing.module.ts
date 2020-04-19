@@ -1,3 +1,6 @@
+import { UsersComponent } from './containers/users/users.component';
+import { NoticesComponent } from './containers/notices/notices.component';
+import { DatesComponent } from './containers/dates/dates.component';
 import { AppoinmentsComponent } from './containers/appoinments/appoinments.component';
 import { LoginComponent } from './containers/login/login.component';
 import { HomeComponent } from './containers/home/home.component';
@@ -12,7 +15,11 @@ const routes: Routes = [
   {path:'ingreso',component:LoginComponent},
   {path:'registro',component:RegisterComponent},
   {path:'perfil',component:ProfileComponent},
-  {path:'citas',component:AppoinmentsComponent}
+  {path:'citas',component:AppoinmentsComponent},
+  {path:'fechas',component:DatesComponent},
+  {path:'noticias',component:NoticesComponent},
+  {path:'usuarios',component:UsersComponent}
+  
 
 ];
 

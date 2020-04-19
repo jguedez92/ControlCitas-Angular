@@ -28,9 +28,6 @@
         </label>
       </div>
       <div class="ml-2 mb-4" *ngIf="message">
-        <small *ngIf="isSuccess" class="alert alert-success text-center" role="alert">
-          {{message}}
-        </small>
         <small *ngIf="!isSuccess" class="alert alert-danger text-center" role="alert">
           {{message}}
         </small>

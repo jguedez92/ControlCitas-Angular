@@ -75,8 +75,22 @@ main {
 }
 
 .nav-link {
-  
+  color: $color-font-base !important;
   &:hover {
     color: $color-hover !important;
   }
+}
+
+
+.color-base{
+  background: $color-base;
+}
+
+
+.color-dark{
+  background: $color-dark;
+}
+
+.color-font-base{
+  color: $color-font-base;
 }

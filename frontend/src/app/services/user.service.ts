@@ -10,8 +10,6 @@ export class UserService {
 
   constructor(public httpClient: HttpClient) { }
 
-  public lsUser: object;
-
   register(user: object): Observable<any> {
     return this.httpClient.post('http://localhost:3000/users/register', user);
   }
@@ -20,9 +18,7 @@ export class UserService {
   }
 
   getLocalStorageUser = () => {
-    
-      return JSON.parse(localStorage.getItem('user'))
-  
+    return JSON.parse(localStorage.getItem('user'))
   }
 
 
