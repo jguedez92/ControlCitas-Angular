@@ -9,24 +9,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DatesComponent implements OnInit {
 
-  public message:string
-  public dates:object
-  
+  public message: string
+  public dates: object
 
-  constructor(public fb:FormBuilder, public dateService: DateService) { }
+
+  constructor(public fb: FormBuilder, public dateService: DateService) { }
 
   ngOnInit(): void {
 
     this.dateService.getEnabledDates()
-    .subscribe(
-      res=>{
-        this.dates = res.dates
-        console.log(this.dates)
-      },
-      error => console.log(error)
-    )
+      .subscribe(
+        res => {
+          this.dates = res.dates
+        },
+        error => console.log(error)
+      )
 
-  
+
 
   }
 
@@ -34,22 +33,19 @@ export class DatesComponent implements OnInit {
     date: ['', Validators.required]
   })
 
-  registerDate(){
-    if(this.dateForm.valid){
-      
+  registerDate() {
+    if (this.dateForm.valid) {
+
       const date = this.dateForm.value
 
       this.dateService.register(date)
-      .subscribe(
-        res => {
-          this.message = res.message;
-          setTimeout( ()=>{
-            setTimeout(() => location.href = "http://localhost:4300/fechas", 500)
-          }, 2500)
-          
-        },
-        error => console.log(error)
-      )
+        .subscribe(
+          res => {
+            this.message = res.message;
+            setTimeout(() => location.href = "http://localhost:4300/fechas", 2000)
+          },
+          error => console.log(error)
+        )
 
     }
   }
