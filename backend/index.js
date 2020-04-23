@@ -7,6 +7,7 @@ const PORT = 3000;
 const userRouter = require('./routes/users');
 const dateRouter = require('./routes/dates');
 const appointRouter = require('./routes/appointments');
+const newsRouter = require('./routes/news');
 
 app.use(morgan('dev'));
 
@@ -22,6 +23,7 @@ app.use((req, res, next) => {
 app.use('/users',userRouter);
 app.use('/dates',dateRouter);
 app.use('/appoints',appointRouter);
+app.use('/news',newsRouter);
 
 
 

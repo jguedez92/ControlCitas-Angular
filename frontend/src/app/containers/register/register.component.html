@@ -2,7 +2,7 @@
   <div class="col-10 mt-4 color-secondary rounded-lg p-4 animated bounceInRight" *ngIf="!message">
     <h4 class="mb-3">Registro</h4>
     <hr class="my-2">
-    <form [formGroup]='regForm'>
+    <form class="mb-4" [formGroup]='regForm'>
       <div class="row">
         <div class="col-md-6 mb-3">
           <label for="name">Nombre</label>
@@ -125,10 +125,14 @@
       </div>
 
     </form>
+    <div class="col-12 text-center mt-3 mb-5" >
+      <a routerLink="/ingreso">¿ya tienes registrada una cuenta?</a>
+    </div>
   </div>
   <div class="col-10 my-5 color-secondary rounded-lg p-4 animated bounceInRight" *ngIf="message">
     <div class="alert alert-success text-center" role="alert">
       {{message}}
     </div>
   </div>
+  
 </div>

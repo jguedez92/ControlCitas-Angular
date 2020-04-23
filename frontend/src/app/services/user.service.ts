@@ -13,8 +13,13 @@ export class UserService {
   register(user: object): Observable<any> {
     return this.httpClient.post('http://localhost:3000/users/register', user);
   }
+
   login(user: object): Observable<any> {
     return this.httpClient.post('http://localhost:3000/users/login', user);
+  }
+
+  getAll(): Observable<any> {
+    return this.httpClient.get('http://localhost:3000/users/');
   }
 
   getLocalStorageUser = () => {

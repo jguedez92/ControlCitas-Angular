@@ -14,6 +14,7 @@ module.exports = (sequelize, DataTypes) => {
     // associations can be defined here
     User.hasMany(models.Token);
     User.hasMany(models.Appointments);
+    User.hasMany(models.News);
   };
   return User;
 };

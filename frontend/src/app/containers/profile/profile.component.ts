@@ -16,7 +16,8 @@ export class ProfileComponent implements OnInit {
 
     this.user = this.userService.getLocalStorageUser()
 
-
   }
+
+  
 
 }

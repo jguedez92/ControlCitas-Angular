@@ -28,12 +28,12 @@ export class RegisterComponent implements OnInit {
     name: ['', [
       Validators.required,
       Validators.minLength(4),
-      Validators.maxLength(10)
+      Validators.maxLength(25)
     ]],
     lastName: ['', [
       Validators.required,
       Validators.minLength(4),
-      Validators.maxLength(10)
+      Validators.maxLength(25)
     ]],
     dni: ['', [
       Validators.required,

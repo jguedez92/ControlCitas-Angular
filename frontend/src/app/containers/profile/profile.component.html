@@ -1,12 +1,11 @@
-<div class="row d-flex justify-content-center" style="height: 65vh;">
-  <div class="col-8 color-secondary my-5 rounded-lg  p-4  animated bounceInUp">
-    <h4 class="mb-3">Perfil de Usuario</h4>
+<div class="row d-flex px-3 justify-content-center">
+  <div class="col-12 color-secondary mt-2 rounded-lg  p-4  animated bounceInUp">
+    <h4 class="my-3">Perfil de Usuario</h4>
     <hr class="mb-4">
-    <div class="col-12 my-3 mx-auto">
-      <div
-        class="row no-gutters border rounded-lg bg-white overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
-        <div class="col-auto p-4 d-flex flex-column position-static">
-          <strong class="d-inline-block mb-2 text-primary">{{user.role}}</strong>
+    <div class="col-12 d-flex justify-content-center my-3 mx-auto">
+      <div class="card col-7 border rounded-lg bg-white mb-4 shadow-sm h-md-250 position-relative">
+        <div class="card-body col-auto p-4 d-flex flex-column position-static">
+          <strong class="d-inline-block mb-2 text-primary" *ngIf="user.role == 'admin'">{{user.role}}</strong>
           <h2 class="mx-auto mb-4">{{user.name}} {{user.lastName}}</h2>
           <div class="row">
             <div class="col-md-6 mb-3">
@@ -17,27 +16,52 @@
               <label class="font-weight-bold">citas canceladas</label>
               0
             </div>
-            <div class="col-4 mb-3">
-              <label class="font-weight-bold">DNI</label>
-              <br>
+            <div class="col-12 text-center mb-3">
+              <label class="font-weight-bold">DNI: </label>
+
               {{user.dni}}
             </div>
-            <div class="col-4 mb-3">
-              <label class="font-weight-bold">Telefono</label>
+            <div class="col-6 text-center mb-3">
+              <label class="font-weight-bolder">
+                Telefono:
+                <button class="btn p-0 ml-0 mb-2" data-toggle="modal" data-target="#phoneModal">
+                  <svg class="bi bi-pencil-square" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path
+                      d="M15.502 1.94a.5.5 0 010 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 01.707 0l1.293 1.293zm-1.75 2.456l-2-2L4.939 9.21a.5.5 0 00-.121.196l-.805 2.414a.25.25 0 00.316.316l2.414-.805a.5.5 0 00.196-.12l6.813-6.814z" />
+                    <path fill-rule="evenodd"
+                      d="M1 13.5A1.5 1.5 0 002.5 15h11a1.5 1.5 0 001.5-1.5v-6a.5.5 0 00-1 0v6a.5.5 0 01-.5.5h-11a.5.5 0 01-.5-.5v-11a.5.5 0 01.5-.5H9a.5.5 0 000-1H2.5A1.5 1.5 0 001 2.5v11z"
+                      clip-rule="evenodd" />
+                  </svg>
+                </button>
+              </label>
               <br>
               {{user.phone}}
             </div>
-            <div class="col-4 mb-3">
-              <label class="font-weight-bold">Email</label>
+            <div class="col-6 text-centermb-3">
+              <label class="font-weight-bold mb-0 ">Email:
+                <button class="btn p-0 ml-0 mb-2" data-toggle="modal" data-target="#exampleModal">
+                  <svg class="bi bi-pencil-square" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path
+                      d="M15.502 1.94a.5.5 0 010 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 01.707 0l1.293 1.293zm-1.75 2.456l-2-2L4.939 9.21a.5.5 0 00-.121.196l-.805 2.414a.25.25 0 00.316.316l2.414-.805a.5.5 0 00.196-.12l6.813-6.814z" />
+                    <path fill-rule="evenodd"
+                      d="M1 13.5A1.5 1.5 0 002.5 15h11a1.5 1.5 0 001.5-1.5v-6a.5.5 0 00-1 0v6a.5.5 0 01-.5.5h-11a.5.5 0 01-.5-.5v-11a.5.5 0 01.5-.5H9a.5.5 0 000-1H2.5A1.5 1.5 0 001 2.5v11z"
+                      clip-rule="evenodd" />
+                  </svg>
+                </button>
+              </label>
               <br>
               {{user.email}}
             </div>
             <div class="col-12 mt-3 d-flex justify-content-center">
               <button class="btn btn-primary">
-                Modificar Datos
+                cambiar contraseña
               </button>
             </div>
           </div>
         </div>
       </div>
     </div>
+  </div>
+</div>

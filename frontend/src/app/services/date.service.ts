@@ -18,8 +18,8 @@ export class DateService {
   register(date: object): Observable<any> {
     return this.httpClient.post('http://localhost:3000/dates/register', date);
   }
-  update(date: object): Observable<any> {
-    return this.httpClient.post('http://localhost:3000/dates/changeStatus', date);
+  changeStatus(options: object): Observable<any> {
+    return this.httpClient.post('http://localhost:3000/dates/changeStatus', options);
   }
   
 

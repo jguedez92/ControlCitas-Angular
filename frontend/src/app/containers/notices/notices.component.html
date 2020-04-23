@@ -1,1 +1,106 @@
-<p>notices works!</p>
+<div class="col-12 color-secondary rounded-lg animated bounceInUp mt-2 mb-5 p-5">
+  <div class="card ">
+    <h5 class="card-header">
+      <ul class="nav nav-tabs" id="myTab" role="tablist">
+        <li class="nav-item">
+          <a class="nav-link active" id="home-tab" data-toggle="tab" href="#newsEnables" role="tab"
+            aria-controls="newsEnables" aria-selected="true">Historial de noticias</a>
+        </li>
+        <li class="nav-item rounded-lg">
+          <a class="nav-link" id="contact-tab" data-toggle="tab" href="#addNews" role="tab" aria-controls="addNews"
+            aria-selected="false">Agregar segmento</a>
+        </li>
+      </ul>
+    </h5>
+    <div class="card-body bg-transparent tab-content" id="myTabContent">
+
+      <!-- CONTAINER FECHAS HABILIDATAS -->
+      <div class="tab-pane bg-transparent fade show active" id="newsEnables" role="tabpanel" aria-labelledby="home-tab">
+        <div class="container p-3">
+          <h6>Noticias</h6>
+          <hr>
+          <div class="accordion mx-auto col-10 mb-5" id="accordionExample">
+            <div class="card" *ngFor="let new of news">
+              <div class="card-header" id="headingTwo">
+                <div class="col-12 text-center">
+                  <button class="btn btn-link collapsed font-weight-bold" type="button" data-toggle="collapse"
+                    [attr.data-target]="'#area'+new.id" aria-expanded="false" [attr.aria-controls]="'area'+new.id">
+                    <h4 class="mb-0 ">{{new.title}}</h4>
+                  </button>
+                </div>
+                <div class="container d-flex justify-content-around">
+                  <h6 class="my-auto">
+                    Estatus: <span class="text-success">{{new.status}}</span>
+                  </h6>
+                  <h6 class="my-auto">
+                    publicado: <span class="text-success">{{new.createdAt | date: 'shortDate'}}</span>
+                  </h6>
+                  <h2 class="mb-0">
+                    <button class="btn btn-primary" type="button">
+                      deshabilitar
+                    </button>
+                  </h2>
+                </div>
+              </div>
+              <div id="area{{new.id}}" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                <div class="card-body">
+                  <div class="container">
+                    <p class="text-justify">
+                      {{new.content}}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div><!-- Acordion-->
+          </div>
+        </div>
+      </div><!-- /CONTAINER FECHAS HABILIDATAS -->
+
+      <!-- CONTAINER AGREGAR FECHAS -->
+      <div class="tab-pane fade" id="addNews" role="tabpanel" aria-labelledby="contact-tab">
+        <div class="container px-5  mb-4">
+          <form [formGroup]='newsForm'>
+            <h6>Agregar noticia</h6>
+            <hr>
+
+            <div class="col-10 mx-auto mb-3">
+              <label for="">Titulo</label>
+              <input formControlName="title" type="text" class="form-control" id=""
+                [class.is-invalid]="newsForm.get('title').touched && newsForm.get('title').invalid">
+              <div *ngIf="newsForm.get('title').touched && newsForm.get('title').invalid">
+                <small class="text-danger ml-2" *ngIf="newsForm.get('title').errors.required">
+                  debe ingresar su nombreun Titulo
+                </small>
+              </div>
+            </div>
+
+            <div class="col-10 mx-auto mb-3">
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">Contenido</span>
+                </div>
+                <textarea formControlName="content" class="form-control" aria-label="Contenido" style="height: 10em;"
+                  [class.is-invalid]="newsForm.get('content').touched && newsForm.get('content').invalid">
+                </textarea>
+              </div>
+              <div *ngIf="newsForm.get('content').touched && newsForm.get('content').invalid">
+                <small class="text-danger ml-2" *ngIf="newsForm.get('content').errors.required">
+                  debe ingresar su nombreun Titulo
+                </small>
+              </div>
+            </div>
+            <div class="col-10 mx-auto text-center mb-3">
+              <button class="btn btn-primary" style="width: 15em;" (click)="newsRegister()">Agregar</button>
+            </div>
+          </form>
+          <div class="col-12 my-5 color-secondary rounded-lg p-4 animated bounceInRight" *ngIf="message">
+            <div class="alert alert-success text-center" role="alert">
+              {{message}}
+            </div>
+          </div>
+        </div><!-- FORMULARIO-->
+      </div><!-- /CONTAINER AGREGAR FECHAS-->
+    </div><!-- /card-body tab-content -->
+
+  </div>
+</div>

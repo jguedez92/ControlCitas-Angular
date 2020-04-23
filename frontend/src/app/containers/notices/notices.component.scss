@@ -1,0 +1,13 @@
+@import '../../../styles.scss';
+
+.color-secondary{
+    background: $color-secondary;
+  }
+
+.color-base{
+  background-color: $color-base !important;
+}
+
+.color-dark{
+  background: $color-dark;
+}

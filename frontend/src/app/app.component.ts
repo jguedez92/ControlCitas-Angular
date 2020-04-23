@@ -19,12 +19,10 @@ export class AppComponent implements OnInit{
 
   ngOnInit(): void {
     this.lsUser = this.userService.getLocalStorageUser()
-    if(this.lsUser.role == "admin"){
-      this.isAdmin = true
-    }
-
     if(this.lsUser){
-      console.log(this.lsUser)
+      if(this.lsUser.role == "admin"){
+        this.isAdmin = true
+      }
     }
   }
 
@@ -37,8 +35,8 @@ export class AppComponent implements OnInit{
   }
 
   disconect(){
-    localStorage.clear();
     location.href = "http://localhost:4300/"
+    localStorage.clear();
   }
 
 

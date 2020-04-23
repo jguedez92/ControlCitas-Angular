@@ -1,35 +1,34 @@
 const {
-    Date,
-    Appointments
+    News
 } = require('../models/index');
 
-const DateController = {
+const NewsController = {
 
     async register(req, res) {
         try {
-            const date = await Date.create({
-                date: req.body.date,
+            const news = await News.create({
+                title: req.body.title,
+                content: req.body.content,
+                UserId: req.body.userId,
                 status: "enabled"
             });
             res.status(200).send({
-                date,
-                message: "la fecha se ha registrado de manera satisfactoria"
+                news,
+                message: "el segmento se ha registrado de manera satisfactoria"
             })
         } catch (error) {
             console.log(error);
             res.status(500).send({
-                message: 'Hubo un problema al tratar de crear la fecha'
+                message: 'Hubo un problema al tratar de crear el segmento'
             });
         }
     },
 
     async getAll(req, res) {
         try {
-            const dates = await Date.findAll({
-                include: [Appointments]
-            })
+            const news = await News.findAll()
             res.status(201).send({
-                dates
+                news
             })
         } catch (error) {
             console.log(error);
@@ -41,35 +40,33 @@ const DateController = {
 
     async getEnabled(req, res) {
         try {
-            const dates = await Date.findAll({
-                include: [Appointments],
+            const news = await News.findAll({
                 where: {
                     status: "enabled"
                 },
-                order: [['date', 'ASC']]            
+                order: [['createdAt', 'DESC']]            
             })
-            if(dates.length > 0){
+            if(news.length > 0){
                 return res.status(200).send({
-                    dates
+                    news
                 })
             }else{
                 return res.status(400).send({
-                    message: "no hay citas habilitadas"
+                    message: "no hay segmentos"
                 })   
             }
             
         } catch (error) {
             console.log(error);
             res.status(500).send({
-                message: 'Hubo un problema al tratar de encontrar las fechas'
+                message: 'Hubo un problema al tratar de encontrar los segmentos'
             });
         }
     },
 
     async changeStatus(req, res) {
         try {
-
-            const date = await Date.update({
+            const news = await News.update({
                 status: req.body.status
             }, {
                 where: {
@@ -77,17 +74,16 @@ const DateController = {
                 }
             })
             res.status(200).send({
-                date,
                 message: ' se ha cambiado el estatus de manera exitosa'
             })
 
         } catch (error) {
             console.log(error);
             res.status(500).send({
-                message: 'Hubo un problema al tratar de cambiar el '
+                message: 'Hubo un problema al tratar de cambiar el estatus '
             });
         }
     }
 }
 
-module.exports = DateController;
+module.exports = NewsController;
