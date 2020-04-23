@@ -56,7 +56,7 @@ const appController = {
             const app = await Appointments.findOne({
                 where: {
                     UserId: req.body.UserId,
-                    status: "active"
+                    status: "actived"
                 }
             });
             if (!app) {
@@ -77,7 +77,6 @@ const appController = {
 
     async update(req, res) {
         try {
-
             const app = await Appointments.update({
                 status: req.body.status,
                 observations: req.body.observations
@@ -88,7 +87,7 @@ const appController = {
             });
             res.status(200).send({
                 app,
-                message: "se ha cancelado la cita de manera satisfactoria"
+                message: "se ha actualizado la cita de manera satisfactoria"
             })
         } catch (error) {
             console.log(error)

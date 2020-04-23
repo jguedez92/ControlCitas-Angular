@@ -38,7 +38,7 @@ export class AppoinmentsComponent implements OnInit {
           this.dateReserved = this.dates.filter(
             date => {
               for (const appoint of date.Appointments) {
-                return appoint.UserId == user.id && appoint.status == "active";
+                return appoint.UserId == user.id && appoint.status == "actived";
               }
             })
           if (this.dateReserved.length > 0) {
