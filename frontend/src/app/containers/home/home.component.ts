@@ -21,7 +21,6 @@ export class HomeComponent implements OnInit, OnDestroy {
     .subscribe(
       res=>{
         this.news = res.news.reverse()
-        console.log(this.news)
       },
       error => console.log(error)
     )

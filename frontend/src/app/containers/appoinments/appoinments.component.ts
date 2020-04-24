@@ -14,7 +14,7 @@ export class AppoinmentsComponent implements OnInit {
   public userApp
   public message: string
   public appExist: boolean = false
-  public dateReserved
+  public dateReserved; appReserved;
 
 
   constructor(
@@ -32,19 +32,20 @@ export class AppoinmentsComponent implements OnInit {
         res => {
           this.dates = res.dates.map(date => ({
             ...date,
-            day: new Date(date.date).getDay()
+            day: new Date(date.date).getDay(),
+            plazas: 8 - (date.Appointments.filter(app => app.status == "actived").length)
           }))
           const user = this.userService.getLocalStorageUser()
-          this.dateReserved = this.dates.filter(
-            date => {
-              for (const appoint of date.Appointments) {
-                return appoint.UserId == user.id && appoint.status == "actived";
-              }
-            })
+          this.dateReserved = this.dates.filter(date => date.Appointments.find(appoint => appoint.UserId == user.id && appoint.status == 'actived'))
+          
+          console.log(this.dateReserved)
           if (this.dateReserved.length > 0) {
             this.appExist = true;
+            this.appReserved = this.dateReserved[this.dateReserved.length - 1].Appointments.filter(appoint => appoint.UserId == user.id && appoint.status == 'actived')
+          }else{
+            console.log(this.appExist)
           }
-          console.log(this.dateReserved)
+
         },
         error => console.log(error)
       )
@@ -77,7 +78,7 @@ export class AppoinmentsComponent implements OnInit {
   cancelAppoint(idApp) {
     const appoint = {
       id: idApp,
-      status: "unavailable",
+      status: "postponed",
       observations: "Cancelado por el usuario"
     }
     this.appointmentService.update(appoint)

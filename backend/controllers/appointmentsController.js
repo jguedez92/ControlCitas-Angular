@@ -9,7 +9,7 @@ const appController = {
             const filter = await Appointments.findOne({
                 where: {
                     UserId: req.body.UserId,
-                    status: "active"
+                    status: "actived"
                 }
             })
 
@@ -22,7 +22,7 @@ const appController = {
             const app = await Appointments.create({
                 UserId: req.body.UserId,
                 DateId: req.body.DateId,
-                status: "active",
+                status: "actived",
                 observations: req.body.observations
             });
             res.status(200).send({

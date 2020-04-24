@@ -5,21 +5,14 @@
     <div class="col-12 d-flex justify-content-center my-3 mx-auto">
       <div class="card col-7 border rounded-lg bg-white mb-4 shadow-sm h-md-250 position-relative">
         <div class="card-body col-auto p-4 d-flex flex-column position-static">
-          <strong class="d-inline-block mb-2 text-primary" *ngIf="user.role == 'admin'">{{user.role}}</strong>
-          <h2 class="mx-auto mb-4">{{user.name}} {{user.lastName}}</h2>
+          <strong class="d-inline-block mb-2 text-primary" *ngIf="userLs.role == 'admin'">{{userBd.role}}</strong>
+          <h2 class="mx-auto mb-4">{{userBd.name}} {{userBd.lastName}}</h2>
           <div class="row">
-            <div class="col-md-6 mb-3">
-              <label class="font-weight-bold">Citas realizadas</label>
-              5
-            </div>
-            <div class="col-md-6 mb-3">
-              <label class="font-weight-bold">citas canceladas</label>
-              0
-            </div>
+            
             <div class="col-12 text-center mb-3">
               <label class="font-weight-bold">DNI: </label>
 
-              {{user.dni}}
+              {{userBd.dni}}
             </div>
             <div class="col-6 text-center mb-3">
               <label class="font-weight-bolder">
@@ -37,7 +30,7 @@
                 </button>
               </label>
               <br>
-              {{user.phone}}
+              {{userBd.phone}}
             </div>
             <div class="col-6 text-centermb-3">
               <label class="font-weight-bold mb-0 ">Email:
@@ -54,15 +47,13 @@
                 </button>
               </label>
               <br>
-              {{user.email}}
+              {{userBd.email}}
             </div>
             <div class="col-12 mt-3 d-flex justify-content-around">
               <button class="btn btn-primary" (click)="mostrarModal('password')">
                 cambiar contraseña
               </button>
-              <button class="btn btn-primary" (click)="mostrarModal('role')">
-                cambiar rol
-              </button>
+              
             </div>
           </div>
         </div>
@@ -71,142 +62,141 @@
 
     <!-- Modal -->
     <div class="col-12 fixed-top color-secondary d-none " [class.d-block]="viewModal" style="height: 100vh;">
-      <div class="card mt-5 animated {{animationModal}}">
-        <div class="card-header">
-          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span>&times;</span>
-          </button>
-        </div>
+      <div class="col-10 mx-auto">
+        <div class="card mt-5 animated {{animationModal}}">
+          <div class="card-header d-flex justify-content-between">
+            <h5 class="modal-title">Actualizar datos</h5>
+            <button type="button" class="close" (click)="mostrarModal()">
+              <span>&times;</span>
+            </button>
+          </div>
 
-        <div class="card-body">
-          <div class="container">
-            <div class="row d-flex justify-content-center">
-              <div class="col-10 d-flex justify-content-center border rounded-lg">
-                <!-- FORMULARIO TELEFONO -->
-                <form class="mb-4" [formGroup]='' *ngIf="formPhone">
-                  <div class="container py-4">
-                    <div class="row">
-                      <div class="col-6 mb-3">
-                        <label for="phone">Telefono</label>
-                        <input formControlName="phone" type="text" class="form-control" id="phone"
-                          placeholder="Ej: 666-090090" [class.is-invalid]="">
-                        <div>
-                          <small class="text-danger ml-2">
-                            Debe ingresar un numero de telefono
-                          </small>
-                          <small class="text-danger ml-2">
-                            el numero debe tener 10 digitos
-                          </small>
-                          <small class="text-danger ml-2">
-                            el numero debe tener 10 digitos
-                          </small>
+          <div class="card-body">
+            <div class="container">
+              <div class="row d-flex justify-content-center">
+                <div class="col-8 d-flex justify-content-center border rounded-lg">
+                  <!-- FORMULARIO TELEFONO -->
+                  <form class="mb-4" [formGroup]='formPhone' *ngIf="viewPhone">
+                    <div class="container py-4">
+                      <div class="row">
+                        <div class="col-12 mt-3">
+                          <label for="phone">Telefono</label>
+                          <input formControlName="phone" type="text" class="form-control mb-4" id="phone"
+                            placeholder="Ej: 666-77799912"
+                            [class.is-invalid]="formPhone.get('phone').touched && formPhone.get('phone').invalid">
+
+                          <div *ngIf="formPhone.get('phone').touched && formPhone.get('phone').invalid">
+                            <small class="text-danger ml-2" *ngIf="formPhone.get('phone').errors.required">
+                              Debe ingresar un numero de telefono
+                            </small>
+                            <small class="text-danger ml-2" *ngIf="formPhone.get('phone').errors.minlength">
+                              el numero debe tener minimo 10 digitos
+                            </small>
+                            <small class="text-danger ml-2" *ngIf="formPhone.get('phone').errors.maxlength">
+                              el numero debe tener maximo 10 digitos
+                            </small>
+                           
+                          </div>
+                          <div class="col-10 my-5 mx-auto rounded-lg p-4 animated bounceInRight" *ngIf="message">
+                            <div class="alert alert-success text-center" role="alert">
+                              {{message}}
+                            </div>
+                          </div>
                         </div>
                       </div>
+                      <hr class="my-4">
+                      <div class="row d-flex justify-content-around">
+                        <button class="btn btn-primary" style="width: 10em;" type="submit" (click)="actualizarDatos('phone')" >Guardar</button>
+                        <button type="button" class="btn btn-secondary mx-2" style="width: 10em;"
+                          (click)="mostrarModal()">Cancelar
+                        </button>
+                      </div>
                     </div>
-                    <hr class="my-4">
+                  </form>
+                  <!--/FORMULARIO TELEFONO-->
+
+                  <!-- FORMULARIO EMAIL -->
+                  <form class="mb-4" [formGroup]='formEmail' *ngIf="viewEmail">
+                    <div class="container py-4">
+                      <div class="row">
+                        <div class="col-12 mt-3">
+                          <label for="email">email</label>
+                          <input formControlName="email" type="text" class="form-control mb-4" id="email" placeholder="ejemplo@correo.com"
+                          [class.is-invalid]="formEmail.get('email').touched && formEmail.get('email').invalid">
+                          <div *ngIf="formEmail.get('email').touched && formEmail.get('email').invalid">
+                            <small class="text-danger ml-2" *ngIf="formEmail.get('email').errors.required">
+                              Debe ingresar un correo
+                            </small>
+                            <small class="text-danger ml-2" *ngIf="formEmail.get('email').errors.email">
+                              debe ingresar un correo valido
+                            </small>
+                          </div>
+                          <div class="col-10 my-5 mx-auto rounded-lg p-4 animated bounceInRight" *ngIf="message">
+                            <div class="alert alert-success text-center" role="alert">
+                              {{message}}
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <hr class="my-4">
                     <div class="row d-flex justify-content-around">
-                      <button class="btn btn-primary" style="width: 10em;" type="submit">Guardar</button>
-                      <button class="btn btn-secondary" style="width: 10em;" type="reset">limpiar</button>
+                      <button class="btn btn-primary" style="width: 10em;" type="submit" (click)="actualizarDatos('email')">Guardar</button>
+                      <button type="button" class="btn btn-secondary mx-2" style="width: 10em;"
+                        (click)="mostrarModal()">Cancelar
+                      </button>
                     </div>
-                  </div>
-                </form>
-                <!--/FORMULARIO TELEFONO-->
+                    </div>
+                    
+                  </form>
+                  <!-- /FORMULARIO EMAIL -->
 
-
-
-                <!-- FORMULARIO EMAIL -->
-                <form class="mb-4" [formGroup]='' *ngIf="formEmail">
-                  <div class="row">
-                    <div class="col-6 mb-3">
-                      <label for="phone">email</label>
-                      <input formControlName="phone" type="text" class="form-control" id="phone"
-                        placeholder="Ej: 666-090090" [class.is-invalid]="">
-                      <div>
-                        <small class="text-danger ml-2">
-                          Debe ingresar un numero de telefono
-                        </small>
-                        <small class="text-danger ml-2">
-                          el numero debe tener 10 digitos
-                        </small>
-                        <small class="text-danger ml-2">
-                          el numero debe tener 10 digitos
-                        </small>
+                  <!--FORMULARIO PASSWORD-->
+                  <form class="mb-3" [formGroup]='formPassword' *ngIf="viewPassword">
+                    <div class="container py-4">
+                      <div class="row">
+                        <div class="col-12 mt-3">
+                          <label for="password">contraseña</label>
+                          <input formControlName="password" type="password" class="form-control mb-2" id="password"
+                            [class.is-invalid]="formPassword.get('password').touched && formPassword.get('password').invalid">
+                            <div class="mb-2" *ngIf="formPassword.get('password').touched && formPassword.get('password').invalid">
+                              <small class="text-danger mx-auto" *ngIf="formPassword.get('password').errors.required">
+                                Debe ingresar una contraseña
+                              </small>
+                              <small class="text-danger ml-2" *ngIf="formPassword.get('password').errors.minlength">
+                                el numero debe tener minimo 8 digitos
+                              </small>
+                            </div>
+                            <label for="confirm">confirme la contraseña</label>
+                          <input formControlName="confirm" type="password" class="form-control mb-4" id="confirm"
+                            [class.is-invalid]="formPassword.get('confirm').touched && formPassword.hasError('notEquals')">
+                            
+                            <div *ngIf="formPassword.get('confirm').touched && formPassword.hasError('notEquals')">
+                              <small class="text-danger mx-auto" *ngIf="formPassword.hasError('notEquals')">
+                                Las Contraseñas no coinciden
+                              </small>
+                            </div>
+                            <div class="col-10 my-5 mx-auto rounded-lg p-4 animated bounceInRight" *ngIf="message">
+                              <div class="alert alert-success text-center" role="alert">
+                                {{message}}
+                              </div>
+                            </div>
+                        </div>
                       </div>
+                      <hr class="my-4">
+                    <div class="row d-flex justify-content-around">
+                      <button class="btn btn-primary" style="width: 10em;" type="submit" (click)="actualizarDatos('password')">Guardar</button>
+                      <button type="button" class="btn btn-secondary mx-2" style="width: 10em;"
+                        (click)="mostrarModal()">Cancelar
+                      </button>
                     </div>
-                  </div>
-                  <hr class="my-4">
-                  <div class="row d-flex justify-content-around">
-                    <button class="btn btn-primary" style="width: 10em;" type="submit">Guardar</button>
-                    <button class="btn btn-secondary" style="width: 10em;" type="reset">limpiar</button>
-                  </div>
-                </form>
-                <!-- /FORMULARIO EMAIL -->
-
-                <!-- FORMULARIO ROLE -->
-                <form class="mb-4" [formGroup]='' *ngIf="formRole">
-                  <div class="row">
-                    <div class="col-6 mb-3">
-                      <label for="phone">role</label>
-                      <input formControlName="phone" type="text" class="form-control" id="phone"
-                        placeholder="Ej: 666-090090" [class.is-invalid]="">
-                      <div>
-                        <small class="text-danger ml-2">
-                          Debe ingresar un numero de telefono
-                        </small>
-                        <small class="text-danger ml-2">
-                          el numero debe tener 10 digitos
-                        </small>
-                        <small class="text-danger ml-2">
-                          el numero debe tener 10 digitos
-                        </small>
-                      </div>
                     </div>
-                  </div>
-                  <hr class="my-4">
-                  <div class="row d-flex justify-content-around">
-                    <button class="btn btn-primary" style="width: 10em;" type="submit">Guardar</button>
-                    <button class="btn btn-secondary" style="width: 10em;" type="reset">limpiar</button>
-                  </div>
-                </form>
-                <!-- /FORMULARIO ROLE -->
-
-                <!--FORMULARIO PASSWORD-->
-                <form class="mb-4" [formGroup]='' *ngIf="formPassword">
-                  <div class="row">
-                    <div class="col-6 mb-3">
-                      <label for="phone">password</label>
-                      <input formControlName="phone" type="text" class="form-control" id="phone"
-                        placeholder="Ej: 666-090090" [class.is-invalid]="">
-                      <div>
-                        <small class="text-danger ml-2">
-                          Debe ingresar un numero de telefono
-                        </small>
-                        <small class="text-danger ml-2">
-                          el numero debe tener 10 digitos
-                        </small>
-                        <small class="text-danger ml-2">
-                          el numero debe tener 10 digitos
-                        </small>
-                      </div>
-                    </div>
-                  </div>
-                  <hr class="my-4">
-                  <div class="row d-flex justify-content-around">
-                    <button class="btn btn-primary" style="width: 10em;" type="submit">Guardar</button>
-                    <button class="btn btn-secondary" style="width: 10em;" type="reset">limpiar</button>
-                  </div>
-                </form>
-                <!--FORMULARIO PASSWORD-->
+                  </form>
+                  <!--FORMULARIO PASSWORD-->
+                </div>
               </div>
             </div>
           </div>
-        </div>
-        <!--/CARD BODY-->
-        <div class="card-footer text-right">
-          <button type="button" class="btn btn-secondary mx-2" data-dismiss="modal"
-            (click)="mostrarModal()">Close</button>
-          <button type="button" class="btn btn-primary mx-2y">Save changes</button>
+          <!--/CARD BODY-->
         </div>
       </div>
     </div>

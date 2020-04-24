@@ -19,7 +19,7 @@
             <div class="my-auto">
               <h6>
                 plazas: <span class="text-success" [class.text-danger]="date.Appointments.length >= 5  ">
-                  {{ 8 - date.Appointments.length}}
+                  {{ date.plazas}}
                 </span>
               </h6>
             </div>
@@ -49,14 +49,16 @@
         <div class="card-body p-3">
           <h5 class="card-title">Comprobante de Reserva</h5>
           <p class="card-text text-justify">
+            
             Estimado usuario, le informamos que tiene una cita pautada para la fecha:
-            <span class="text-primary">{{dateReserved[0].date}}</span>, 
+            <span class="text-primary">{{dateReserved[dateReserved.length - 1].date}}</span>, 
             el <b> horario de atencion</b> para ese dia sera de <b>8am</b> a <b>12pm</b> y de <b>2pm</b> a <b>6pm</b>.
             <br>
             En caso de <span class="text-warning">no poder asistir a la cita debe cancelarla</span>  en el boton de abajo
           </p>
           <div class="container text-center">
-            <button class="btn btn-primary" type="button" style="width: 12em;" (click)="cancelAppoint(dateReserved[0].Appointments[0].id)">
+            <button class="btn btn-primary" type="button" style="width: 12em;"
+             (click)="cancelAppoint(appReserved[0].id )">
               Cancelar Cita
             </button>
           </div>

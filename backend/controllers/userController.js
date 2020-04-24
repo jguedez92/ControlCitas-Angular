@@ -82,7 +82,7 @@ const UserController = {
         }
     },
 
-    async getAll(req,res){
+    async getAll(req, res) {
         try {
             const users = await User.findAll()
             res.status(200).send({
@@ -96,10 +96,29 @@ const UserController = {
         }
     },
 
+    async getOne(req, res) {
+        try {
+            const user = await User.findOne({
+                where: {
+                    id: req.body.id
+                }
+            })
+            res.status(200).send({
+                user
+            })
+        } catch (error) {
+            console.log(error)
+            res.status(500).send({
+                message: 'Hubo un problema al tratar de encontrar el usuario'
+            })
+
+        }
+    },
+
     async changePassword(req, res) {
         try {
             const password = await bcrypt.hash(req.body.password, 9);
-            const date = await Date.update({
+            const user = await User.update({
                 password
             }, {
                 where: {
@@ -107,7 +126,7 @@ const UserController = {
                 }
             })
             res.status(200).send({
-                date,
+                user,
                 message: 'se ha cambiado la contraseña de manera exitosa'
             })
 
@@ -121,15 +140,15 @@ const UserController = {
 
     async changePhone(req, res) {
         try {
-            const date = await Date.update({
-                phone : req.body.phone
+            const user = await User.update({
+                phone: req.body.phone
             }, {
                 where: {
                     id: req.body.id
                 }
             })
             res.status(200).send({
-                date,
+                user,
                 message: 'se ha cambiado el telefono de manera exitosa'
             })
 
@@ -140,18 +159,18 @@ const UserController = {
             });
         }
     },
-    
+
     async changeEmail(req, res) {
         try {
-            const date = await Date.update({
-                email : req.body.email
+            const user = await User.update({
+                email: req.body.email
             }, {
                 where: {
                     id: req.body.id
                 }
             })
             res.status(200).send({
-                date,
+                user,
                 message: 'se ha cambiado el email de manera exitosa'
             })
 

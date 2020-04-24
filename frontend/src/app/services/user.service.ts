@@ -18,8 +18,24 @@ export class UserService {
     return this.httpClient.post('http://localhost:3000/users/login', user);
   }
 
+  updatePhone(user: object): Observable<any> {
+    return this.httpClient.post('http://localhost:3000/users/changePhone', user);
+  }
+
+  updateEmail(user: object): Observable<any> {
+    return this.httpClient.post('http://localhost:3000/users/changeEmail', user);
+  }
+
+  updatePassword(user: object): Observable<any> {
+    return this.httpClient.post('http://localhost:3000/users/changePassword', user);
+  }
+
   getAll(): Observable<any> {
     return this.httpClient.get('http://localhost:3000/users/');
+  }
+
+  getOne(user): Observable<any> {
+    return this.httpClient.post('http://localhost:3000/users/getOne', user);
   }
 
   getLocalStorageUser = () => {
